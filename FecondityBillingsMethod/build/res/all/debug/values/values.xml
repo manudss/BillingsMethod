@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <color name="tab_background">#ff9eff14</color>
+
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <string name="action_settings">Settings</string>
-    <string name="app_name">FecondityBillingsMethod</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="app_name">Billings Method</string>
+    <string name="title_section1">Overview</string>
+    <string name="title_section2">Calendar</string>
+    <string name="title_section3">Log</string>
 
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--

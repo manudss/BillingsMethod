@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
@@ -28,7 +29,7 @@ public class Index extends FragmentActivity {
      * intensive, it may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
-    SectionsPagerAdapter mSectionsPagerAdapter;
+    FragmentStatePagerAdapter mSectionsPagerAdapter;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -64,7 +65,7 @@ public class Index extends FragmentActivity {
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -77,7 +78,17 @@ public class Index extends FragmentActivity {
             // below) with the page number as its lone argument.
             Fragment fragment = new DummySectionFragment();
             Bundle args = new Bundle();
-            args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
+            int section_number = position + 1;
+            args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, section_number);
+            String title = "";
+            switch (section_number) {
+                case 1 : title = getString(R.string.title_section1); break;
+                case 2 : title = getString(R.string.title_section2); break;
+                case 3 : title = getString(R.string.title_section3); break;
+
+            }
+            args.putString(DummySectionFragment.ARG_SECTION_TITLE, title.toUpperCase());
+
             fragment.setArguments(args);
             return fragment;
         }
@@ -113,6 +124,7 @@ public class Index extends FragmentActivity {
          * fragment.
          */
         public static final String ARG_SECTION_NUMBER = "section_number";
+        public static final String ARG_SECTION_TITLE = "section_title";
 
         public DummySectionFragment() {
         }
@@ -122,7 +134,7 @@ public class Index extends FragmentActivity {
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_index_dummy, container, false);
             TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
-            dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+            dummyTextView.setText(getArguments().getString(ARG_SECTION_TITLE));
             return rootView;
         }
     }
